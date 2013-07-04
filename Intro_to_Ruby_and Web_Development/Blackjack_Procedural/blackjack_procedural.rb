@@ -2,11 +2,16 @@
 # by Laurence Kauffman
 # July 1, 2013
 
-def calculate_hand (hand)
+require 'pry'
+
+player_money = 500
+bet = 0
+
+def calculate_hand (hand) 
   total = 0
   hand2 = hand.dup # duplicate array so this method doesn't mutate/empty the original
 
-  while hand2.size != 0
+  while hand2.size != 0  # or do hand.each
     card = hand2.pop
 
   case card[1]
@@ -38,7 +43,7 @@ def list_cards(person, cards_to_list)
 end
   
 
-def wager
+def wager (player_money)
   while true
     puts 'You have $' + player_money.to_s
     puts 'How much do you want to wager for this hand?'
@@ -48,11 +53,11 @@ def wager
     else
       player_money = player_money - bet
       puts "You have bet $" + bet.to_s
-      bet
+      bet  #implicit break with return?
+      break
+      
     end
   end
-
-
 end
 
 
@@ -63,11 +68,10 @@ full_deck =
   'SA', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'SJ', 'SQ', 'SK' ]
 
 
-player_money = 500
-bet = 0
-puts "Enter Your Name: "
+print "Enter Your Name: "
 player_name = gets.chomp
-print 'Hello, ' + player_name + ', Welcome to Blackjack!  '
+puts "Hello, " + player_name + ", Welcome to Blackjack!"
+puts
 
 # puts bet.to_s
 play_again = 'y'
@@ -84,10 +88,11 @@ while true
   dealer_total = 0
   player_total = 0
 
-  # bet = wager
-  puts list_cards("Your ", player_cards)
+  bet = wager(player_money)
+  print list_cards("Your ", player_cards)
   puts "Your total is: " + calculate_hand(player_cards).to_s
 
+#binding.pry
 
   while true
     bust = 'n'
@@ -124,12 +129,12 @@ while true
 
     if dealer_total > 21 || dealer_total < player_total 
       player_money += bet
-      puts "YOU WIN!  You now have $" + player_money
+      puts "YOU WIN!  You now have $" + player_money.to_s
     elsif dealer_total == player_total
-      puts "It's a Draw.    You now have $" + player_money
+      puts "It's a Draw.    You now have $" + player_money.to_s
     else
       player_money -= bet
-      puts "You lose.  You now have $" + player_money
+      puts "You lose.  You now have $" + player_money.to_s
     end 
   end
 
