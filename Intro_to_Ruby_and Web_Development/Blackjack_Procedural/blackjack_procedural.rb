@@ -48,6 +48,7 @@ def wager
 			player_money = player_money - bet
 			puts "You have bet $" + bet.to_s
 			bet
+		end
 	end
 
 
@@ -61,12 +62,11 @@ full_deck =
 	'SA', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'SJ', 'SQ', 'SK' ]
 
 
-
 player_money = 500
 bet = 0
 puts "Enter Your Name: "
 player_name = gets.chomp
-puts 'Hello, ' + player_name + ', Welcome to Blackjack!'
+print 'Hello, ' + player_name + ', Welcome to Blackjack!  '
 
 # puts bet.to_s
 play_again = 'y'
@@ -90,7 +90,7 @@ while true
 
 	while true
 		bust = 'n'
-		puts "Do you want a hit? (y/n)"
+		print "Do you want a hit? (y/n)"
 		hit = gets.chomp
 		
 		if hit == 'y'
@@ -107,7 +107,6 @@ while true
 			break
 		end
 	end
-
 
 	if bust == 'y'
 		puts "You Bust"
@@ -139,5 +138,4 @@ while true
 	if play_again == 'n'
 		break
 	end
-end
 end
