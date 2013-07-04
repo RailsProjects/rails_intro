@@ -9,39 +9,23 @@ def calculate_hand (hand)
 		card = hand.pop
 
 		case card
-		when card.at(1) == 'A'
-			if total + 11 > 21
-		  	total += 1
+		when card[1] == 'A'
+		if total + 11 > 21
+		  total += 1
 		  else
-		  	total += 11
+		  total += 11
 		  end
 
-		when card.at(1) == "2"
-			total += 2
-		when card.at(1) == '3'
-			total += 3
-		when card.at(1) == '4'
-			total += 4
-		when card.at(1) == '5'
-			total += 5
-		when card.at(1) == '6'
-			total += 6
-		when card.at(1) == '7'
-			total += 7
-		when card.at(1) == '8'
-			total += 8
-		when card.at(1) == '9'
-			total += 9
-		when card.at(1) == '1'
-			total += 10
-		when card.at(1) == 'J'
-			total += 10
-		when card.at(1) == 'Q'
-			total += 10
-		when card.at(1) == 'K'
-			total += 10
-		# else
+		when card[1] == 'J'
+		total += 10
+		when card[1] == 'Q'
+		total += 10
+		when card[1] == 'K'
+		total += 10
+		else
+		total += card[1].to_i
 		end
+puts "total in loop: " + total.to_s
 	end
 	total
 end
@@ -79,8 +63,8 @@ while true
 	
 	puts "Your cards: " + player_cards.to_s
 	total = calculate_hand(player_cards)
-	puts "Your total is: " + total
-	
+	puts "Your total is: " + total.to_s
+
 	while true
 		puts "Do you want a hit? (y/n)"
 		hit = gets.chomp
